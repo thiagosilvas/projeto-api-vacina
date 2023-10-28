@@ -1,0 +1,84 @@
+version: '3.8'
+services:
+  Mymongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data  
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser 
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass 
+    networks:
+      - vacina-network
+  mongo-express:
+        image: mongo-express
+        environment:
+            - ME_CONFIG_MONGODB_AUTH_USERNAME=rootuser
+            - ME_CONFIG_MONGODB_AUTH_PASSWORD=rootpass
+            - ME_CONFIG_MONGODB_URL=mongodb://rootuser:rootpass@Mymongo:27017/
+
+        ports:
+          - "8081:8081" 
+        networks:
+         - vacina-network 
+        depends_on:
+         - Mymongo 
+  apipaciente:
+    image: apipaciente
+    restart: always
+    build:
+      context: .
+      dockerfile: apiPaciente/Dockerfile
+    working_dir: /apiPaciente
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8085:8085"
+    command: mvn spring-boot:run
+    depends_on:
+      - Mymongo
+    networks:
+      - vacina-network  
+  apiregistrovacinacao:
+    image: apiregistrovacinacao
+    restart: always
+    build:
+      context: .
+      dockerfile: apiRegistroVacinacao/Dockerfile
+    working_dir: /apiRegistroVacinacao
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8086:8086"
+    command: mvn spring-boot:run
+    depends_on:
+      - Mymongo
+    networks:
+      - vacina-network      
+  apivacina:
+    image: apivacina
+    restart: always
+    build:
+      context: .
+      dockerfile: apiVacina/Dockerfile
+    working_dir: /apiVacina
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8087:8087"
+    command: mvn spring-boot:run
+    depends_on:
+      - Mymongo
+    networks:
+      - vacina-network        
+networks:
+  vacina-network:
+    driver: bridge
+  
+      
+ 
+
+
