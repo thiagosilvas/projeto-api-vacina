@@ -30,8 +30,8 @@ services:
     image: apipaciente
     restart: always
     build:
-      context: .
-      dockerfile: apiPaciente/Dockerfile
+      context: ./apiPaciente
+      dockerfile: Dockerfile
     working_dir: /apiPaciente
     environment:
       TZ: America/Sao_Paulo
@@ -46,8 +46,8 @@ services:
     image: apiregistrovacinacao
     restart: always
     build:
-      context: .
-      dockerfile: apiRegistroVacinacao/Dockerfile
+      context: ./apiRegistroVacinacao
+      dockerfile: Dockerfile
     working_dir: /apiRegistroVacinacao
     environment:
       TZ: America/Sao_Paulo
@@ -62,8 +62,8 @@ services:
     image: apivacina
     restart: always
     build:
-      context: .
-      dockerfile: apiVacina/Dockerfile
+      context: ./apiVacina
+      dockerfile: Dockerfile
     working_dir: /apiVacina
     environment:
       TZ: America/Sao_Paulo
