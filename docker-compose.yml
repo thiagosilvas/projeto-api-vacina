@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  Mymongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser 
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass 
+    networks:
+      - vacina-network
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=rootuser
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=rootpass
+      - ME_CONFIG_MONGODB_URL=mongodb://rootuser:rootpass@Mymongo:27017/
+    ports:
+      - "8081:8081" 
+    networks:
+      - vacina-network 
+    depends_on:
+      - Mymongo
+
+  apiPaciente:
+    image: apipaciente
+    restart: always
+    build:
+      context: ./apiPaciente
+      dockerfile: Dockerfile
+    working_dir: /apiPaciente
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8085:8085"
+
+    depends_on:
+      - Mymongo
+    networks:
+      - vacina-network  
+
+  apiregistrovacinacao:
+    image: apiregistrovacinacao
+    restart: always
+    build:
+      context: ./apiRegistroVacinacao
+      dockerfile: Dockerfile
+    working_dir: /apiRegistroVacinacao
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8086:8086"
+   
+    depends_on:
+      - Mymongo
+      - apiPaciente
+      - apiVacina
+    networks:
+      - vacina-network      
+
+  apiVacina:
+    image: apivacina
+    restart: always
+    build:
+      context: ./apiVacina
+      dockerfile: Dockerfile
+    working_dir: /apiVacina
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8087:8087"
+   
+    depends_on:
+      - Mymongo
+    networks:
+      - vacina-network
+  web:
+    image: nginx
+    container_name: nginx-server
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    networks:
+      - vacina-network
+    depends_on:
+      - apiVacina
+      - apiPaciente
+      - apiregistrovacinacao
+      - Mymongo
+
+networks:
+  vacina-network:
+    driver: bridge

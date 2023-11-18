@@ -1,0 +1,10 @@
+br/edu/unime/vacina/apiVacina/service/VacinaService.class
+br/edu/unime/vacina/apiVacina/repository/VacinaRepository.class
+br/edu/unime/vacina/apiVacina/ApiVacinaApplication.class
+br/edu/unime/vacina/apiVacina/exception/TratamentoErros.class
+br/edu/unime/vacina/apiVacina/dto/ErrorDTO.class
+br/edu/unime/vacina/apiVacina/entity/Log.class
+br/edu/unime/vacina/apiVacina/configuration/CacheConfig.class
+br/edu/unime/vacina/apiVacina/entity/Vacina.class
+br/edu/unime/vacina/apiVacina/cadastroVacinas/ListaVacinas.class
+br/edu/unime/vacina/apiVacina/controller/VacinaController.class

@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "84e916c9-f857-4ff3-98bc-a7cd4d8d88cd",
+		"name": "Covid-19 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17846774",
+		"_collection_link": "https://martian-escape-259743.postman.co/workspace/Projeto-vacina~505e225e-820d-460d-9813-17238d6c3f5b/collection/17846774-84e916c9-f857-4ff3-98bc-a7cd4d8d88cd?action=share&source=collection_link&creator=17846774"
+	},
+	"item": [
+		{
+			"name": "Listar pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/pacientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Pacientes [Endpoint teste]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Pablo\",\n    \"sobrenome\": \"Silva\",\n    \"cpf\": \"513.940.390-00\",\n    \"dataDeNascimento\": \"2023-11-09\",\n    \"genero\": \"m\",\n    \"contatos\": [\"7532526634\", \"7133774549\"],\n    \"enderecos\": [{\"logradouro\": \"Rua B\", \"numero\": \"1\", \"bairro\":\"Bairro A\", \"cep\": \"42740045\", \"municipio\":\"lauro\",\"estado\":\"ba\"}]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:80/pacientes/adicionar-pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"pacientes",
+						"adicionar-pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Paciente passando ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8085/pacientes/6545841bc407d37d19219095",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"pacientes",
+						"6545841bc407d37d19219095"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar registro de vacinação passando id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8086/registro-vacinacao/id",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"registro-vacinacao",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Registros de vacinação",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8086/registro-vacinacao",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"registro-vacinacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar pacientes com doses atrasadas por estado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/registro-paciente/doses/atrasadas?estado=ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-paciente",
+						"doses",
+						"atrasadas"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "ba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LIstar doses paciente passando o id do paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/registro-paciente/6558eae8f066bf1f677bfa85/doses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-paciente",
+						"6558eae8f066bf1f677bfa85",
+						"doses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra Registro de Vacinação [Endpoint teste]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nomeProfissional\":\"julia\",\n\"sobrenomeProfissional\":\"Guimarães\",\n\"dataVacinacao\":\"2022-10-07\",\n\"cpfProfissional\":\"838.326.240-07\",\n\"identificacaoPaciente\":\"65285720cc781c257bc483ba\",\n\"identificacaoVacina\":\"652857ae4f1af0601e896dca\",\n\"identificacaoDose\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:80/registro-vacinacao/adicionar-registro-vacinacao",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-vacinacao",
+						"adicionar-registro-vacinacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza dados de regristro de vacinação",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"nomeProfissional\": \"julia\",\n        \"sobrenomeProfissional\": \"Guimarães\",\n        \"dataVacinacao\": \"2022-10-07\",\n        \"cpfProfissional\": \"838.326.240-07\",\n        \"identificacaoPaciente\": \"654e7b8796bdc3020204bd65\",\n        \"identificacaoVacina\": \"654e812d42db663931421e07\",\n        \"identificacaoDose\": \"1\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:80/registro-vacinacao/654e815b42db663931421e09",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-vacinacao",
+						"654e815b42db663931421e09"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar quantidade total de vacina aplicada por estado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/registro-vacina/aplicadas/total?estado=ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-vacina",
+						"aplicadas",
+						"total"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "ba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar o total de vacinas aplicadas de cada fabricante [Estado opcional]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/registro-vacina/aplicadas?fabricante=CORONAVAC&estado=ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"registro-vacina",
+						"aplicadas"
+					],
+					"query": [
+						{
+							"key": "fabricante",
+							"value": "CORONAVAC"
+						},
+						{
+							"key": "estado",
+							"value": "ba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar vacina [Endpoint teste]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fabricante\": \"Pfzier\",\n    \"lote\": \"5116AB\",\n    \"dataDeValidade\": \"2023-12-07\",\n    \"numeroDeDoses\": 2,\n    \"intervaloDeDoses\": 30\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:80/vacina/adicionar-vacinas",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"vacina",
+						"adicionar-vacinas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza dados da vacina",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"fabricante\": \"Pfzier\",\n        \"lote\": \"5116ABBB\",\n        \"dataDeValidade\": \"2023-12-07\",\n        \"numeroDeDoses\": 2,\n        \"intervaloDeDoses\": 30\n    }\n\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:80/vacina/6558eaf1441593549e8caf60",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"vacina",
+						"6558eaf1441593549e8caf60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar vacinas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:80/vacina",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"vacina"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar vacina passando o id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:80/vacina/id",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"vacina",
+						"id"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
