@@ -1,0 +1,15 @@
+br/edu/unime/paciente/apiPaciente/validation/CPFunicoValidador.class
+br/edu/unime/paciente/apiPaciente/ApiPacienteApplication.class
+br/edu/unime/paciente/apiPaciente/entity/Log.class
+br/edu/unime/paciente/apiPaciente/dto/ErrorDTO.class
+br/edu/unime/paciente/apiPaciente/configuration/CacheConfig.class
+br/edu/unime/paciente/apiPaciente/validation/ValidationErrorResponse.class
+br/edu/unime/paciente/apiPaciente/entity/Endereco.class
+br/edu/unime/paciente/apiPaciente/dto/InfoPacienteDTO.class
+br/edu/unime/paciente/apiPaciente/testing/ListaPaciente.class
+br/edu/unime/paciente/apiPaciente/entity/Paciente.class
+br/edu/unime/paciente/apiPaciente/service/PacienteService.class
+br/edu/unime/paciente/apiPaciente/exception/TratamentoErros.class
+br/edu/unime/paciente/apiPaciente/validation/CPFunico.class
+br/edu/unime/paciente/apiPaciente/repository/PacienteRepository.class
+br/edu/unime/paciente/apiPaciente/controller/PacienteController.class

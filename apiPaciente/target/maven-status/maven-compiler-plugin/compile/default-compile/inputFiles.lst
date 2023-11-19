@@ -1,0 +1,15 @@
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/dto/ErrorDTO.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/testing/ListaPaciente.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/validation/CPFunicoValidador.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/configuration/CacheConfig.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/service/PacienteService.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/validation/ValidationErrorResponse.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/dto/InfoPacienteDTO.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/repository/PacienteRepository.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/exception/TratamentoErros.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/entity/Log.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/controller/PacienteController.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/validation/CPFunico.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/ApiPacienteApplication.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/entity/Endereco.java
+/home/thiago/Documentos/api-covid-19/apiPaciente/src/main/java/br/edu/unime/paciente/apiPaciente/entity/Paciente.java
