@@ -2,7 +2,7 @@
 
 # Projeto Docker de uma API de Registro d Vacinação 
 
-O objetivo principal é criar um ambiente isolado e padronizado para a execução da API de registro de vacinação, usando Docker como plataforma de contêineres, Java Spring Boot e MongoDB como banco de dados NoSQL
+O objetivo principal é criar um ambiente isolado e padronizado para a execução da API de registro de vacinação, usando Docker como plataforma de contêineres, Java Spring Boot, MongoDB como banco de dados NoSQL eo Ninx como API Gateway 
 
 ### Arquitetura 
 
