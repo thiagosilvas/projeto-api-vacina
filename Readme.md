@@ -7,9 +7,7 @@ O objetivo principal é criar um ambiente isolado e padronizado para a execuçã
 ### Arquitetura 
 
 <p align="center">
-  <a href="https://codesandbox.io">
-    <img src="https://i.ibb.co/GsYDrHS/Arquitetura.png" height="300px">
-  </a>
+    <img src="https://i.ibb.co/GsYDrHS/Arquitetura.png" height="300px" width="">
 </p>
 
 ### Pré-requisitos 

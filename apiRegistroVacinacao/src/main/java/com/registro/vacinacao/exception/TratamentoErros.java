@@ -1,4 +1,5 @@
 package com.registro.vacinacao.exception;
+
 import com.registro.vacinacao.dto.ErrorDTO;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
@@ -20,10 +21,10 @@ public class TratamentoErros {
         return criarRespostaDeErro(HttpStatus.BAD_REQUEST, mensagem);
     }
     @ExceptionHandler(NullPointerException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorDTO> lidarComErroDeNulos(@NotNull MethodArgumentNotValidException e) {
-        String mensagem = e.getBindingResult().getFieldError().getDefaultMessage();
-        return criarRespostaDeErro(HttpStatus.NOT_FOUND, mensagem);
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ErrorDTO> lidarComErroDeNulos(NullPointerException e) {
+        String mensagem = "Parece que algo deu errado. Encontramos uma referência nula, o que causou o erro. Para maiores informações, entre em contato pelo nosso WhatsApp 71 99999-9999. Lamentamos o ocorrido!";
+        return criarRespostaDeErro(HttpStatus.INTERNAL_SERVER_ERROR, mensagem);
     }
     @ExceptionHandler(HttpClientErrorException.class)
     public ResponseEntity<ErrorDTO> lidarComErroDoCliente(@NotNull HttpClientErrorException e) {
