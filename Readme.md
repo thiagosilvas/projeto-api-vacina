@@ -48,3 +48,7 @@ Aguarde até que o Docker Compose conclua a construção e inicialização dos c
 Após a conclusão, a API deve estar disponível. Importe o arquivo Postamna-api.json incluindo dentro da pasta raix do projeto para dentro do Postman.
 
 
+## Credenciais Mongo Express
+
+Usuário: admin
+Senha: pass 
