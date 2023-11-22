@@ -18,11 +18,9 @@ services:
   mongo-express:
     image: mongo-express
     environment:
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin
-      - ME_CONFIG_MONGODB_AUTH_USERNAME=rootuser
-      - ME_CONFIG_MONGODB_AUTH_PASSWORD=rootpass
-      - ME_CONFIG_MONGODB_URL=mongodb://rootuser:rootpass@Mymongo:27017/
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=Mymongo
     ports:
       - "8081:8081" 
     networks:
