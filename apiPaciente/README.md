@@ -8,15 +8,15 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
 - [Java Development Kit (JDK) 17 ou superior](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
-- [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 - [Postman](https://www.postman.com/downloads/)
 
 ## Configuração do Ambiente
 
 ### MongoDB
 
-1. Instale o MongoDB Compass seguindo as instruções [aqui](https://docs.mongodb.com/compass/current/install/).
-2. Abra o MongoDB Compass e crie um banco de dados chamado `pacientes-api`.
+1. Instale o MongoDB Community Server [aqui](https://www.mongodb.com/try/download/community).(Pressione select package em Community Community Server, em seguida pressione download)
+2. Certifique-se que MongoDB está com URI: mongodb://localhost:27017
 
 ### IntelliJ IDEA
 
@@ -33,7 +33,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 1. Clone o projeto:
 
 ```bash
-git clone https://github.com/Xalvitor/apiPaciente/edit/main/README.md
+git clone https://github.com/Xalvitor/apiPaciente.git
 ```
 
 2. Abra o projeto no IntelliJ IDEA.
@@ -43,7 +43,7 @@ git clone https://github.com/Xalvitor/apiPaciente/edit/main/README.md
 spring.data.mongodb.host=localhost
 spring.data.mongodb.port=27017
 spring.data.mongodb.database=pacientes-api
-server.port=8081
+server.port=8082
 ```
 
 4. Execute o aplicativo a partir do IntelliJ IDEA.
@@ -57,49 +57,49 @@ Acesse os seguintes endpoints da API:
 - `POST http://localhost:8082/pacientes`: Adiciona um novo paciente ao banco de dados. Utilize um JSON no corpo da requisição conforme o modelo da entidade `Paciente`.
 
   Exemplo de JSON:
+
   ```json
   { 
-    "nome": "Precisa de nome com pelo menos 2 letras",
-    "sobrenome": "Precisa de sobrenome com pelo menos 2 letras",
-    "cpf": "Precisa de CPF valido",
-    "dataDeNascimento": "Precisa de data em formato xxxx-xx-xx",
-    "genero": "Precisa se dizer o genero",
-    "contatos": ["Precisa se colocar no minimo um contato"],
+    "nome": "Antonio",
+    "sobrenome": "Vitor",
+    "cpf": "11784323004",
+    "dataDeNascimento": "2000-12-12",
+    "genero": "Masculino",
+    "contatos": ["97974-4727"],
     "enderecos": [
         {
-          "logradouro": "Precisa colocar o logradouro",
-          "numero": {precisa ter apenas um número acima de 0},
-          "bairro": "Precisa colocar o logradouro",
-          "cep": "precisa colocar cep de pelo menos 8 digitos",
-          "municipio": "Precisa colocar o nome do municipio",
-          "estado": "Precisa colocar uma sigla de 2 letras"
+          "logradouro": "Rua Itamar Neiva Monteiro",
+          "numero": 1,
+          "bairro": "José Américo de Almeida",
+          "cep": "58074000",
+          "municipio": "João Pessoa",
+          "estado": "PB"
         }
      ]
   }
   ```
-
 - `PUT http://localhost:8082/pacientes/{id do paciente}`: Altera as informações do paciente com base no ID. Utilize um JSON no corpo da requisição conforme o modelo da entidade `Paciente`.
 
+  Exemplo de JSON:
   ```json
   { 
-    "nome": "Precisa de nome com pelo menos 2 letras",
-    "sobrenome": "Precisa de sobrenome com pelo menos 2 letras",
-    "cpf": "Precisa de CPF valido",
-    "dataDeNascimento": "Precisa de data em formato xxxx-xx-xx",
-    "genero": "Precisa se dizer o genero",
-    "contatos": ["Precisa se colocar no minimo um contato"],
+    "nome": "Antonio",
+    "sobrenome": "Vitor",
+    "cpf": "11784323004",
+    "dataDeNascimento": "2000-12-12",
+    "genero": "Masculino",
+    "contatos": ["98849-7848"],
     "enderecos": [
         {
-          "logradouro": "Precisa colocar o logradouro",
-          "numero": "precisa ter apenas um número acima de 0",
-          "bairro": "Precisa colocar o logradouro",
-          "cep": "precisa colocar cep de pelo menos 8 digitos",
-          "municipio": "Precisa colocar o nome do municipio",
-          "estado": "Precisa colocar uma sigla de 2 letras"
+          "logradouro": "Rua Itamar Neiva Monteiro",
+          "numero": 1,
+          "bairro": "José Américo de Almeida",
+          "cep": "58074000",
+          "municipio": "João Pessoa",
+          "estado": "PB"
         }
      ]
   }
-  ```
 
 - `DELETE http://localhost:8082/pacientes/{id do paciente}`: Deleta o paciente com o id inserido do banco de dados
 - `POST http://localhost:8082/pacientes/adicionar-pacientes`: Adiciona pacientes pre-definidos ao banco de dados a fim de testes

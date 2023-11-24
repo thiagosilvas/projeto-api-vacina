@@ -31,9 +31,9 @@ public class Vacina {
     @NotNull(message = "A data de validade deve ser inserida!")
     private LocalDate dataDeValidade;
 
-    @NotNull(message = "O número de doses deve ser inserida!")
+    @NotNull(message = "O número de doses deve ser inserido!")
     private Integer numeroDeDoses;
 
-    private Integer intervaloDeDoses;
 
+    private Integer intervaloDeDoses;
 }

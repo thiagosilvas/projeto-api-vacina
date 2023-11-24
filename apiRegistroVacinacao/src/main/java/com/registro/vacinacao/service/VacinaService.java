@@ -22,14 +22,12 @@ public class VacinaService {
     private final RegistroVacinacaoService registroVacinacaoService;
     private final PacienteClientService pacienteClientService;
     private final VacinaClientService vacinaClientService;
-    private final CacheManager cacheManager;
 
     @Autowired
-    public VacinaService(RegistroVacinacaoService registroVacinacaoService, PacienteClientService pacienteClientService, VacinaClientService vacinaClientService, CacheManager cacheManager) {
+    public VacinaService(RegistroVacinacaoService registroVacinacaoService, PacienteClientService pacienteClientService, VacinaClientService vacinaClientService) {
         this.registroVacinacaoService = registroVacinacaoService;
         this.pacienteClientService = pacienteClientService;
         this.vacinaClientService = vacinaClientService;
-        this.cacheManager = cacheManager;
     }
 
     @Autowired
@@ -51,7 +49,8 @@ public class VacinaService {
 
         mongoTemplate.insert(log, "log");
     }
-    @Cacheable("registroVacinacaoCache")
+
+
     public Map<String, Object> listarTotalVacinasAplicadas(String estado) {
         List<Map<String, Object>> registrosComPacientes = combinarRegistroComPaciente();
 
@@ -101,8 +100,11 @@ public class VacinaService {
                 .map(vacina -> vacina.get("id").asText())
                 .flatMap(id -> registrosComPacientes.stream()
                         .filter(registroComPaciente -> {
+                            RegistroVacinacao registro = (RegistroVacinacao) registroComPaciente.get("registroVacinacao");
+
+                            System.out.println(registro);
                             JsonNode pacienteNode = (JsonNode) registroComPaciente.get("paciente");
-                            return estadoValido(pacienteNode, estado);
+                            return estadoValido(pacienteNode, estado) && id.equals(registro.getIdentificacaoVacina());
                         })
                 ).count();
     }

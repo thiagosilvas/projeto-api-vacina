@@ -15,7 +15,7 @@ public class CPFunicoValidador implements ConstraintValidator<CPFunico, String> 
     @Autowired
     private HttpServletRequest request;
 
-    // Setter method for HttpServletRequest to be used in testing
+
     public void setHttpServletRequest(HttpServletRequest request) {
         this.request = request;
     }

@@ -1,6 +1,7 @@
 package br.edu.unime.paciente.apiPaciente.entity;
 
 import br.edu.unime.paciente.apiPaciente.validation.CPFunico;
+import br.edu.unime.paciente.apiPaciente.validation.DataNascimentoValida;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,11 @@ public class Paciente {
     private String cpf;
 
     @NotNull(message = "Data não pode ser nulo e não pode estar em branco.")
+    @DataNascimentoValida
     private LocalDate dataDeNascimento;
+
     @NotBlank(message = "Genero não pode ser nulo e não pode estar em branco.")
+    @Pattern(regexp = "^(Masculino|Feminino)$", message = "O Genero deve ou ser 'Masculino' ou 'Feminino'")
     private String genero;
 
     @NotEmpty(message = "Contatos não pode ser nulo e não pode estar em branco.")

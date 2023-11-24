@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.registro.vacinacao.VacinaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.466 s - in com.registro.vacinacao.VacinaControllerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.843 s - in com.registro.vacinacao.VacinaControllerTest

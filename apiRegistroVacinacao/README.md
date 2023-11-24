@@ -55,71 +55,70 @@ api.vacina.base.url = http://localhost:8081/vacina/
 
 ## Endpoints
 
-Acesse os seguintes endpoints da API:
+Após cadastro Pacientes e Vacinas, acesse os seguintes endpoints da API:
 
-- POST - Criar registro vacinação:
-```http://localhost:8085/registro-vacinacao/```
+- POST - Cadastra 6 registros:
+  ``` http://localhost:8085/registro-vacinacao/adicionar-registro-vacinacao```
 
- Exemplo de JSON:
+Exemplo de JSON:
   ```json
   {
-      "id": "652848c0c6556c0cc7",
-      "nomeProfissional": "Jon",
-      "sobrenomeProfissional":"Son",
-      "dataVacinacao": "2023-11-06",
-      "cpfProfissional": "52401084045",
-      "identificacaoPaciente": "652856c0cc781c257bc483b8",
-      "identificacaoVacina": "Joson",
-      "identificacaoDose": "67b1c2c48c0c65285c7853b8"
+      "nomeProfissional":"julia",
+      "sobrenomeProfissional":"Guimarães",
+      "dataVacinacao":"2022-10-07",
+      "cpfProfissional":"838.326.240-07",
+      "identificacaoPaciente":"65285720cc781c257bc483ba",
+      "identificacaoVacina":"652857ae4f1af0601e896dca",
+      "identificacaoDose":"1"
   }
   ```
 
-- POST - Cadastra 6 registros:
-``` http://localhost:8085/registro-vacinacao/adicionar-registro-vacinacao```
+- POST - Criar registro vacinação:
+  ```http://localhost:8085/registro-vacinacao/```
 
 
 - GET - listar todos os registros vacinais:
-```http://localhost:8085/registro-vacinacao/```
+  ```http://localhost:8085/registro-vacinacao/```
 
 
 - GET - listar registros vacinais por id (informar o id do registro vacinação):
-```http://localhost:8085/registro-vacinacao/id```
+  ```http://localhost:8085/registro-vacinacao/id```
 
 
 - PUT - Atualizar registro vacinação (informar o id do registro vacinação):
-```http://localhost:8085/registro-vacinacao/id```
+  ```http://localhost:8085/registro-vacinacao/id```
 
- Exemplo de JSON:
+Exemplo de JSON:
   ```json
   {
-      "nomeProfissional": "Jon",
-      "sobrenomeProfissional":"Son",
-      "dataVacinacao": "2023-11-06",
-      "cpfProfissional": "52401084045",
-      "identificacaoPaciente": "652856c0cc781c257bc483b8",
-      "identificacaoVacina": "Joson",
-      "identificacaoDose": "67b1c2c48c0c65285c7853b8"
+      "nomeProfissional":"julia",
+      "sobrenomeProfissional":"Guimarães",
+      "dataVacinacao":"2022-10-07",
+      "cpfProfissional":"838.326.240-07",
+      "identificacaoPaciente":"65285720cc781c257bc483ba",
+      "identificacaoVacina":"652857ae4f1af0601e896dca",
+      "identificacaoDose":"1"
   }
   ```
 
 - DELETE - Deletar registro vacinação (informar o id do registro vacinação):
-```http://localhost:8085/registro-vacinacao/id```
+  ```http://localhost:8085/registro-vacinacao/id```
 
 
 - GET: listar doses do paciente (informar o id do cliente):
-```http://localhost:8085/registro-paciente/id/doses```
+  ```http://localhost:8085/registro-paciente/id/doses```
 
 
 - GET: listar pacientes com doses atrasadas (estado é opcional):
-```http://localhost:8085/registro-paciente/doses/atrasadas?estado=ba```
+  ```http://localhost:8085/registro-paciente/doses/atrasadas?estado=ba```
 
 
 - GET: listar o total de vacinas aplicadas de cada fabricante (estado é opcional):
-```http://localhost:8085/registro-vacina/aplicadas?fabricante=pfizer&estado=ba```
+  ```http://localhost:8085/registro-vacina/aplicadas?fabricante=pfizer&estado=ba```
 
 
 - GET: listar o total de vacinas aplicadas (estado é opcional):
-```http://localhost:8085/registro-vacina/aplicadas/total?estado=ba```
+  ```http://localhost:8085/registro-vacina/aplicadas/total?estado=ba```
 
 - ## Licença MIT
 

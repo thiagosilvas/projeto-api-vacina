@@ -80,7 +80,7 @@ class VacinaControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$[2].lote").value("789GHI"));
 
 		// Verify
-		verify(vacinaService, times(2)).obterTodos();
+		verify(vacinaService, times(1)).obterTodos();
 	}
 
 	@Test
@@ -99,7 +99,7 @@ class VacinaControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(0));
 
 		// Verify
-		verify(vacinaService, times(2)).obterTodos();
+		verify(vacinaService, times(1)).obterTodos();
 	}
 
 	@Test
@@ -148,7 +148,7 @@ class VacinaControllerTest {
 	@DisplayName("Deve adicionar uma vacina no banco de dados")
 	public void testAdicionarVacina() throws Exception {
 		// Arrange
-		Vacina novaVacina = new Vacina("4", "NOVA VACINA", "XYZ123", LocalDate.now(), 2, 28);
+		Vacina novaVacina = new Vacina("4", "NOVA VACINA", "XYZ123", LocalDate.now().plusMonths(2), 2, 28);
 
 		// Mock
 		doNothing().when(vacinaService).inserir(novaVacina);
@@ -201,7 +201,7 @@ class VacinaControllerTest {
 								"Lote não pode estar em branco!",
 								"O Fabricante deve ter entre 3 a 100 digitos",
 								"A data de validade deve ser inserida!",
-								"O número de doses deve ser inserida!",
+								"O número de doses deve ser inserido!",
 								"O Lote deve ter entre 3 a 100 digitos!"
 						)
 				));
@@ -230,7 +230,7 @@ class VacinaControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[*]").value(
 						containsInAnyOrder(
 								"A data de validade deve ser inserida!",
-								"O número de doses deve ser inserida!",
+								"O número de doses deve ser inserido!",
 								"Lote não pode estar em branco!",
 								"Fabricante não pode estar em branco.",
 								"Fabricante não pode estar em nulo.",
@@ -260,7 +260,7 @@ class VacinaControllerTest {
 						.content(vacinaJson))
 				.andExpect(MockMvcResultMatchers.status().isNotFound()) // Verifique o código de status
 				.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE)) // Verifique o tipo de conteúdo da resposta
-				.andExpect(MockMvcResultMatchers.jsonPath("$.mensagem").value("Erro de validação: Erro de validação.")); // Verifique a mensagem de erro
+				.andExpect(MockMvcResultMatchers.jsonPath("$.mensagem").value("Erro de validação.")); // Verifique a mensagem de erro
 
 		// Verify
 		verify(vacinaService, times(1)).atualizar(eq(vacina.getId()), any(Vacina.class));

@@ -71,7 +71,16 @@ public class PacienteService {
 
     @CachePut(value = "pacienteCache", key = "#id")
     public Paciente atualizar(String id, Paciente paciente) throws Exception {
+
         Paciente pacienteAntigo = encontrarPaciente(id);
+
+
+        if (!paciente.getCpf().equals(pacienteAntigo.getCpf())){
+            boolean cpfExistente = pacienteRepository.existsByCpf(paciente.getCpf());
+                if (cpfExistente){
+                    throw new Exception("Cpf já cadastrado para outro paciente!");
+                }
+        }
 
         pacienteAntigo.setNome(paciente.getNome());
         pacienteAntigo.setSobrenome(paciente.getSobrenome());

@@ -11,7 +11,7 @@ import java.util.List;
 public class ListaPaciente {
 
 
-    public List<Paciente> ListaPaciente(){
+    public List<Paciente> CadastrarPacientes(){
 
         List<Paciente> pacientesAAdicionar = new ArrayList<>();
 

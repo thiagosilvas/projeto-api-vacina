@@ -3,7 +3,6 @@ package br.edu.unime.paciente.apiPaciente.controller;
 import br.edu.unime.paciente.apiPaciente.entity.Endereco;
 import br.edu.unime.paciente.apiPaciente.entity.Paciente;
 import br.edu.unime.paciente.apiPaciente.repository.PacienteRepository;
-import br.edu.unime.paciente.apiPaciente.validation.CPFunicoValidador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -32,7 +31,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -301,9 +299,56 @@ public class PacienteControllerTest {
                         .content(pacienteJson))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.mensagem").value("Enderecos não pode ser nulo e não pode estar em branco."));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value("Enderecos não pode ser nulo e não pode estar em branco."));
 
     }
+    @Test
+    @DisplayName("Deve se retornar erro ao tentar adicionar um paciente no banco de dados com data de nascimento após do dia de hoje. ")
+    public void testeDeveDarErroAoTentarAdicionarPacienteComDataDeNascimentoInvalida() throws Exception {
+
+        //Arrange
+        Paciente paciente = new Paciente();
+        paciente.setId("12345");
+        paciente.setNome("Antonio Vitor");
+        paciente.setSobrenome("Guimaraes");
+        paciente.setDataDeNascimento(LocalDate.of(2030, 9, 9));
+        paciente.setCpf("38105829053");
+        paciente.setContatos(Collections.singletonList("92685988"));
+        paciente.setGenero("Masculino");
+
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro("Vila Alto de Amaralina");
+        endereco.setCep("41905586");
+        endereco.setNumero(10);
+        endereco.setBairro( "Nordeste");
+        endereco.setMunicipio("Salvador");
+        endereco.setEstado("BA");
+
+        paciente.setEnderecos(Collections.singletonList(endereco));
+
+        //Mock
+        doNothing().when(pacienteService).inserir(any(Paciente.class));
+
+        HttpServletRequest mockRequest = mock(HttpServletRequest.class);
+        when(mockRequest.getMethod()).thenReturn("POST");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, false);
+        String pacienteJson = objectMapper.writeValueAsString(paciente);
+
+        //Act & Assert
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/pacientes")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(pacienteJson))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value("A data de nascimento deve estar no passado e apenas até o ano 1900"));
+
+    }
+
+
     @Test
     @DisplayName("Deve alterar as informações de um paciente já existente no banco de dados. ")
     public void testeAlterarInformacaoPaciente() throws Exception {
@@ -483,7 +528,7 @@ public class PacienteControllerTest {
                         .content(updatedPacienteJson))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.mensagem").value("Enderecos não pode ser nulo e não pode estar em branco."));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value("Enderecos não pode ser nulo e não pode estar em branco."));
 
     }
     @Test

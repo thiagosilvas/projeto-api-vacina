@@ -11,4 +11,5 @@ public interface VacinaRepository extends MongoRepository<Vacina, String> {
 
     Optional<Vacina> findById(String id);
 
+    boolean existsByFabricanteAndLote(String fabricante, String lote);
 }
